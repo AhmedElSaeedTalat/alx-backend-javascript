@@ -3,5 +3,5 @@ export default async function handleResponseFromAPI(promise) {
     console.log('Got a response from the API');
     return { status: 200, body: 'success' };
   });
-  promise.catch(() => new Error());
+  return promise.catch(() => new Error());
 }
