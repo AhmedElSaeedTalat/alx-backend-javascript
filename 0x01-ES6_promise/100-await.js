@@ -6,13 +6,15 @@ export default async function asyncUploadUser() {
     uploadPhoto().then((res) => {
       object.photo = res;
     });
+  } catch (error) {
+    object.photo = null;
+  }
+  try {
     createUser().then((res) => {
       object.user = res;
     });
-    return object;
   } catch (error) {
     object.user = null;
-    object.photo = null;
-    return object;
   }
+  return object;
 }
