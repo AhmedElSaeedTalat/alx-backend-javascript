@@ -4,9 +4,15 @@ export default async function asyncUploadUser() {
   const object = {};
   uploadPhoto().then((res) => {
     object.photo = res;
-  }).catch(() => { object.photo = null; });
+  }).catch(() => {
+    object.photo = null;
+    object.user = null;
+  });
   createUser().then((res) => {
     object.user = res;
-  }).catch(() => { object.user = null; });
+  }).catch(() => {
+    object.photo = null;
+    object.user = null;
+  });
   return object;
 }
