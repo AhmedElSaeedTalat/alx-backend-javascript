@@ -1,6 +1,6 @@
 export default function cleanSet(set, startString) {
   const list = [];
-  if (startString === '') {
+  if (!startString) {
     return '';
   }
   set.forEach((str) => {
