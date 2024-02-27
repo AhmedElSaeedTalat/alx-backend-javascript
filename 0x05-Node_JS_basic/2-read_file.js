@@ -1,35 +1,59 @@
 const fs = require('fs');
-const csv = require('csv-parser');
 
-const countStudents = (path) => {
-  fs.access(path, fs.constants.F_OK, (err) => {
-    if (err) {
-      throw new Error('Cannot load the database');
-    }
-  });
-  const results = [];
-  fs.createReadStream(path).pipe(csv()).on('data', (data) => {
-    results.push(data);
-  }).on('end', () => {
-    let count = 0;
-    const dict = {};
-    for (let i = 0; i < results.length; i += 1) {
-      const { field } = results[i];
-      if (field) {
-        count += 1;
-        if (dict[field]) {
-          dict[field].push(results[i].firstname);
-        } else {
-          dict[field] = [];
-          dict[field].push(results[i].firstname);
+// function to parse csv file manually
+const parse = (file) => {
+  let list = file.split('\n');
+  const newList = [];
+  let dict = {};
+  let head;
+  let row;
+  for (let i = 0; i < list.length; i += 1) {
+    if (i === 0) {
+      head = list[0].split(',');
+    } else {
+      row = list[i].split(',');
+      if (list[i]) {
+        for (let j = 0; j < head.length; j += 1) {
+          dict[head[j]] = row[j];
         }
+        newList.push(dict);
+        dict = {};
       }
     }
-    console.log(`Number of students: ${count}`);
-    for (const [key, value] of Object.entries(dict)) {
-      console.log(`Number of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
+  }
+  list = [];
+  return newList;
+};
+
+//  function to count student
+//  enrolled in each filed
+const countFields = (list) => {
+  const dict = {};
+  for (let i = 0; i < list.length; i += 1) {
+    const { field } = list[i];
+    if (field) {
+      if (dict[field]) {
+        dict[field].push(list[i].firstname);
+      } else {
+        dict[field] = [];
+        dict[field].push(list[i].firstname);
+      }
     }
-  });
+  }
+  for (const [key, value] of Object.entries(dict)) {
+    console.log(`Number of students in ${key}: ${value.length}. List: ${value.join(', ')}`);
+  }
+};
+
+const countStudents = (path) => {
+  if (!fs.existsSync(path)) {
+    throw new Error('Cannot load the database');
+  }
+  const file = fs.readFileSync(path, 'utf-8');
+  const parsedList = parse(file);
+  const count = parsedList.length;
+  console.log(`Number of students: ${count}`);
+  countFields(parsedList);
 };
 
 module.exports = countStudents;
