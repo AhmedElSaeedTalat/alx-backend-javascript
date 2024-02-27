@@ -82,7 +82,7 @@ app.get('/students', async (req, res) => {
     const response = `This is the list of our students\n${list.join('\n')}`;
     res.send(response);
   } catch (err) {
-    res.send(err.toString());
+    res.send('Cannot load the database');
   }
 });
 
