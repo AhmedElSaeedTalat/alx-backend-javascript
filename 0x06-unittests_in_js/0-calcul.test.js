@@ -4,29 +4,35 @@ const assert = require('assert');
 
 describe ('test suit', () => {
   it('test add method normal test', () => {
-    const result = calculateNumber(2, 3);
-    assert.strictEqual(result, 5);
+    assert.strictEqual(calculateNumber(2.0, 3.0), 5);
   });
 
 
   it('test add method floats', () => {
-    const result = calculateNumber(2.0, 3.0);
-    assert.strictEqual(result, 5);
+    assert.strictEqual(calculateNumber(2.1, 2,2), 4);
   });
 
   it('test add method missing argument', () => {
-    const result = calculateNumber(2);
-    assert.ok(isNaN(result));
+    assert.ok(isNaN(calculateNumber(3)));
   });
 
   it('test add floats with one rounded', () => {
-    const result = calculateNumber(2.8, 3);
-    assert.strictEqual(result, 6);
+    assert.strictEqual(calculateNumber(2.9, 2), 5);
+  });
+
+  it('test add floats with 2 rounded', () => {
+    assert.strictEqual(calculateNumber(2.9, 2.9), 6);
+  });
+
+  it('test add floats with one rounded', () => {
+    assert.strictEqual(calculateNumber(2, 3.8), 6);
+  });
+
+  it('test add floats with 2 rounded 2 fraction', () => {
+    assert.strictEqual(calculateNumber(2.99, 2.33), 5);
   });
 
   it('test add floats with more the fraction', () => {
-    const result = calculateNumber(2.8999, 3.999);
-    assert.strictEqual(result, 7);
+    assert.strictEqual(calculateNumber(2.9999999, 3.109323), 6);
   });
-
 });
