@@ -8,12 +8,18 @@ describe ('test suit', () => {
     assert.strictEqual(result, 5);
   });
 
+
+  it('test add method floats', () => {
+    const result = calculateNumber(2.0, 3.0);
+    assert.strictEqual(result, 5);
+  });
+
   it('test add method missing argument', () => {
     const result = calculateNumber(2);
     assert.ok(isNaN(result));
   });
 
-  it('test add floats', () => {
+  it('test add floats with one rounded', () => {
     const result = calculateNumber(2.8, 3);
     assert.strictEqual(result, 6);
   });
