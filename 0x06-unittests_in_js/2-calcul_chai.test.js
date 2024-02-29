@@ -52,6 +52,14 @@ describe ('test suit', () => {
     it('test add floats negative pos', () => {
       expect(calculateNumber('SUM', -3.0, 2.0)).to.be.equal(-1);
     });
+
+    it('test add floats negative pos', () => {
+      expect(calculateNumber('SUM', 3.0, -2.0)).to.be.equal(1);
+    });
+
+    it('test add floats 0 0', () => {
+      expect(calculateNumber('SUM', 0.0, 0.0)).to.be.equal(0);
+    });
   });
   // subtract tests
   describe('SUBTRACT', () => {
@@ -102,6 +110,21 @@ describe ('test suit', () => {
   
     it('test add floats with positive', () => {
       expect(calculateNumber('SUBTRACT', -2.0, 2.0)).to.be.equal(-4);
+    });
+
+    it('test add floats with positive', () => {
+      expect(calculateNumber('SUBTRACT', 2.0, -2.0)).to.be.equal(4);
+    });
+
+    it('test subtract floats 0 0', () => {
+      expect(calculateNumber('SUBTRACT', 0.0, 0.0)).to.be.equal(0);
+    });
+    it('test subtract floats 0 0', () => {
+      expect(calculateNumber('SUBTRACT', -0.0, 0.0)).to.be.equal(-0);
+    });
+
+    it('test subtract floats 0 0', () => {
+      expect(calculateNumber('SUBTRACT', 0.0, -0.0)).to.be.equal(0);
     });
   });
 
@@ -158,6 +181,22 @@ describe ('test suit', () => {
   
     it('test add floats with positive', () => {
       expect(calculateNumber('DIVIDE', -2.0, 2.0)).to.be.equal(-1);
+    });
+
+    it('test add floats with positive', () => {
+      expect(calculateNumber('DIVIDE', 2.0, -2.0)).to.be.equal(-1);
+    });
+
+    it('test divide floats with positive', () => {
+      expect(calculateNumber('DIVIDE', -0.0, 2.0)).to.be.equal(-0);
+    });
+
+    it('test add floats with positive', () => {
+      expect(calculateNumber('DIVIDE', -2.0, 0.2)).to.be.equal('Error');
+    });
+
+    it('test add floats with positive', () => {
+      expect(calculateNumber('DIVIDE', 0.0, 0.0)).to.be.equal('Error');
     });
   });
 });
