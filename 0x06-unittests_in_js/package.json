@@ -4,7 +4,8 @@
   "description": "unit test project js",
   "main": "index.js",
   "scripts": {
-    "test": "mocha '*.test.js'"
+    "lint": "./node_modules/.bin/eslint",
+    "test": "node ./node_modules/mocha/bin/mocha"
   },
   "author": "",
   "license": "ISC",
