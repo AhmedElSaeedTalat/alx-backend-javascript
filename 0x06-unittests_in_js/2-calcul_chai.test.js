@@ -36,6 +36,22 @@ describe ('test suit', () => {
     expect(calculateNumber('SUM', 2.9999999, 3.109323)).to.be.equal(6);
   });
 
+  it('test add floats negative', () => {
+    expect(calculateNumber('SUM', -2.0, -2.0)).to.be.equal(-4);
+  });
+
+  it('test add floats negative with decimals', () => {
+    expect(calculateNumber('SUM', -2.2, -2.9)).to.be.equal(-5);
+  });
+
+  it('test add floats with positive', () => {
+    expect(calculateNumber('SUM', -2.0, 2.0)).to.be.equal(0);
+  });
+
+  it('test add floats negative pos', () => {
+    expect(calculateNumber('SUM', -3.0, 2.0)).to.be.equal(-1);
+  });
+
   // subtract tests
   it('test subtract method normal test', () => {
     expect(calculateNumber('SUBTRACT', 3.0, 2.0)).to.be.equal(1);
@@ -73,6 +89,19 @@ describe ('test suit', () => {
   it('test add floats with no type', () => {
     expect(calculateNumber(3.109323, 2.9999999)).to.be.equal(undefined);
   });
+
+  it('test add floats negative', () => {
+    expect(calculateNumber('SUBTRACT', -2.0, -2.0)).to.be.equal(0);
+  });
+
+  it('test add floats negative with decimals', () => {
+    expect(calculateNumber('SUBTRACT', -2.2, -2.9)).to.be.equal(1);
+  });
+
+  it('test add floats with positive', () => {
+    expect(calculateNumber('SUBTRACT', -2.0, 2.0)).to.be.equal(-4);
+  });
+
 
   // DIVIDE tests
 
@@ -116,4 +145,17 @@ describe ('test suit', () => {
   it('test DIVIDE floats with no type', () => {
     expect(calculateNumber(3.109323, 2.9999999)).to.be.equal(undefined);
   });
+
+  it('test add floats negative', () => {
+    expect(calculateNumber('DIVIDE', -2.0, -2.0)).to.be.equal(1);
+  });
+
+  it('test add floats negative with decimals', () => {
+    expect(calculateNumber('DIVIDE', -7.0, -2.0)).to.be.equal(3.5);
+  });
+
+  it('test add floats with positive', () => {
+    expect(calculateNumber('DIVIDE', -2.0, 2.0)).to.be.equal(-1);
+  });
+
 });
