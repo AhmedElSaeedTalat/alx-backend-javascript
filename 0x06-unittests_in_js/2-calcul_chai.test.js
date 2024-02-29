@@ -1,7 +1,6 @@
-const calculateNumber = require("./1-calcul.js");
-
 const chai = require('chai');
 const expect = chai.expect;
+const calculateNumber = require("./1-calcul.js");
 
 describe ('test suit', () => {
   it('test add method normal test', () => {
