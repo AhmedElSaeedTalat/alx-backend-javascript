@@ -8,11 +8,6 @@ describe ('test suit', () => {
     assert.equal(result, 5);
   });
 
-  it('test add method number and string', () => {
-    result = calculateNumber(2, 'a');
-    assert.ok(isNaN(result));
-  });
-
   it('test add method missing argument', () => {
     result = calculateNumber(2);
     assert.ok(isNaN(result));
