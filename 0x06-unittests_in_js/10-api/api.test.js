@@ -40,4 +40,13 @@ describe('one suite', () => {
       done();
     });
   });
+  
+  it('test app', (done) => {
+    const uri = 'http://localhost:7865/available_payments';	
+    request.get(uri, {json: {userName: 'Ahmed'}} ,(err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.deep.equal({"payment_methods":{"credit_cards":true,"paypal":false}});
+      done();
+    });
+  });
 });
