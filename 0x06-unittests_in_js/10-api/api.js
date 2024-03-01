@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const PORT = 7865;
@@ -21,11 +22,11 @@ app.get('/available_payments', (req, res) => {
   });
 });
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 app.post('/login', (req, res) => {
-  let userName;
-  if (req.body) {
-    userName = req.body.userName;
-  }
+  let userName = req.body.userName;
   res.send(`Welcome ${userName}`);
 });
 
